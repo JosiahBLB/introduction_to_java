@@ -1,0 +1,122 @@
+package exercises;
+
+public class Matrix { // Enter the matrix
+	public int[][] matrix;
+
+	// Constructor, initializes a 2x2 identity matrix.
+	public Matrix() {
+		this.matrix = new int[2][2];
+		this.matrix[0][0] = 1;
+		this.matrix[1][1] = 1;
+	}
+
+	/**
+	 * Read the value at the specified location in the matrix.
+	 * 
+	 * @param i - row index
+	 * @param j - column index
+	 * @return int value
+	 */
+	public Integer read(int i, int j) {
+		if (i < this.matrix.length && j < this.matrix[0].length) {
+			return this.matrix[i][j];
+		}
+		return new Integer(null);
+	}
+
+	/**
+	 * Write the value at the specified location in the matrix.
+	 * 
+	 * @param i - row index
+	 * @param j - column index
+	 */
+	public void write(int i, int j, int value) {
+		if (i < this.matrix.length && j < this.matrix[0].length) {
+			this.matrix[i][j] = value;
+		}
+	}
+
+	/**
+	 * Scales each value in the matrix by a given value c.
+	 * 
+	 * @param c - scaling factor
+	 */
+	public void scale(int c) {
+		for (int i = 0; i < this.matrix.length; i++) {
+			for (int j = 0; i < this.matrix[0].length; j++) {
+				this.matrix[i][j] *= c;
+			}
+		}
+	}
+
+	/**
+	 * Adds two matrices together.
+	 * 
+	 * @param m
+	 * @return
+	 */
+	public Matrix add(Matrix m) {
+		Matrix result = new Matrix();
+		result.write(0, 0, 0);
+		result.write(1, 1, 0);
+		for (int i = 0; i < this.matrix.length; i++) {
+			for (int j = 0; j < this.matrix[0].length; j++) {
+				result.matrix[i][j] = this.matrix[i][j] + m.matrix[i][j];
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * Perform matrix multiplication between current Matrix and input Matrix
+	 * 
+	 * @param Matrix m - input matrix
+	 * @return Matrix - resulting matrix
+	 */
+	public Matrix mult(Matrix m) {
+		Matrix result = new Matrix();
+		result.write(0, 0, 0);
+		result.write(1, 1, 0);
+		for (int i = 0; i < this.matrix.length; i++) {
+			for (int j = 0; j < this.matrix[0].length; j++) {
+				for (int k = 0; k < m.matrix.length; k++) {
+					result.matrix[i][j] += this.matrix[i][k] * m.matrix[k][j];
+				}
+			}
+		}
+		return result;
+	}
+
+	// Overrides default toString
+	public String toString() {
+		String out = "";
+		for (int j = 0; j < this.matrix[0].length; j++) {
+			for (int i = 0; i < this.matrix.length; i++) {
+				out += (i % this.matrix.length == 0) ? "\n" + this.matrix[i][j] + ", " : this.matrix[i][j] + ", ";
+			}
+		}
+		return out;
+	}
+
+	public static void main(String[] args) {
+		// Make two new Matrix objects
+		Matrix neo = new Matrix();
+		Matrix morpheous = new Matrix();
+
+		// Write to one
+		morpheous.write(0, 0, 9);
+		morpheous.write(0, 1, 9);
+		morpheous.write(1, 0, 9);
+		morpheous.write(1, 1, 9);
+
+		// Test methods
+		System.out.println(neo.read(1, 0));
+		System.out.println(neo.read(0, 0));
+		System.out.println(neo);
+		System.out.println(morpheous);
+		Matrix agentSmith = neo.mult(morpheous);
+		Matrix trinity = agentSmith.add(morpheous);
+		System.out.println(agentSmith);
+		System.out.println(trinity);
+	}
+}

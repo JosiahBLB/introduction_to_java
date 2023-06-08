@@ -1,0 +1,68 @@
+package assignmentOne;
+
+public class Product {
+	// Instance variables
+	private String modelName;
+	private String manufacturerName;
+	private double retailPrice;
+	private double reliabilityRating;
+	private int numberOfRatings;
+
+	// Three input constructor
+	public Product(String modelName, String manufacturerName, double retailPrice) {
+		this.modelName = modelName;
+		this.manufacturerName = manufacturerName;
+		this.retailPrice = retailPrice;
+		this.reliabilityRating = 0;
+		this.numberOfRatings = 0;
+	}
+
+	// Two input constructor
+	public Product(String modelName, String manufacturerName) {
+		this(modelName, manufacturerName, 0);
+	}
+
+	// Getters
+	public String getModelName() {
+		return this.modelName;
+	}
+
+	public String getManufacturerName() {
+		return this.manufacturerName;
+	}
+
+	public double getRetailPrice() {
+		return this.retailPrice;
+	}
+
+	public double getReliabilityRating() {
+		return this.reliabilityRating;
+	}
+
+	public int getNumberOfRatings() {
+		return this.numberOfRatings;
+	}
+
+	// Setter
+	public void setRetailPrice(double retailPrice) {
+		this.retailPrice = retailPrice;
+	}
+
+	// Overwrite the default toString
+	public String toString() {
+		return (this.modelName + ", " + this.manufacturerName + ", $" + this.retailPrice + ", " + this.reliabilityRating
+				+ " (based on " + this.numberOfRatings + " customer ratings)");
+	}
+
+	/**
+	 * Adds a customer rating to the overall reliability rating.
+	 * 
+	 * @param customerRating - A single customer rating
+	 */
+	public void rateReliability(double customerRating) {
+		this.numberOfRatings += 1;
+		this.reliabilityRating = ((this.reliabilityRating * (this.numberOfRatings - 1) + customerRating)
+				/ this.numberOfRatings);
+	}
+
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Encapsulate field &apos;exercises.BankAccount.pin&apos; in &apos;exercises.BankAccount&apos;&#x0A;- Original project: &apos;Lab11_Revision&apos;&#x0A;- Original element: &apos;exercises.BankAccount.pin&apos;&#x0A;- Setter method name: &apos;setPin&apos;&#x0A;- Field visibility: &apos;public&apos;&#x0A;- Use getter and setter methods in declaring type" comments="false" declaring="true" description="Encapsulate field &apos;pin&apos;" flags="589830" id="org.eclipse.jdt.ui.self.encapsulate" input="/src&lt;exercises{BankAccount.java[BankAccount^pin" insertion="4" setter="setPin" stamp="1686211393904" version="1.0" visibility="1"/>
+</session>

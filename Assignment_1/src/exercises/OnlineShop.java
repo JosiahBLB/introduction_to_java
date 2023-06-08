@@ -1,0 +1,54 @@
+package exercises;
+
+public class OnlineShop {
+	// Instance variables
+	private Product[] inventory;
+	private int nProduct;
+	
+	// Constructor
+	public OnlineShop() {
+		this.inventory = new Product[5];
+		this.nProduct = 0;
+	}
+	
+	// Overwrites default toString to output the enumerated inventory (1-5)
+	public String toString() {
+		String output = "";
+		for (int i = 0; i < this.nProduct; i++) {
+			output += ((i + 1) + ". " + this.inventory[i] + "\n");
+		}
+		return output;
+	}
+	
+	// Getter (I know this is not required but it makes my code neater later on)
+	public int getNumOfProducts() {
+		return this.nProduct;
+	}
+
+	/**
+	 * Appends a product to the shop's inventory.
+	 * 
+	 * @param product - A product to add
+	 */
+	public void addProduct(Product product) {
+		for (int i = 0; i < 5; i++) {
+			if (this.inventory[i] == null) {
+				this.inventory[i] = product;
+				this.nProduct += 1;
+				return;
+			}
+		}
+	}
+
+	/**
+	 * Returns a Product from the specified index (1 to 5).
+	 * 
+	 * @param itemNumber - The index of the item from 1 to 5
+	 * @return Product - A product from the store
+	 */
+	public Product getProduct(int itemNumber) {
+		if (itemNumber > 0 && itemNumber < this.nProduct+1)
+			return this.inventory[itemNumber - 1];
+		return null;
+	}
+}

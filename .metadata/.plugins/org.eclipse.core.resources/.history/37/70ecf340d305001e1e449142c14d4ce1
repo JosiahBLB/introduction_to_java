@@ -1,0 +1,50 @@
+package exercises;
+
+public class BankAccount {
+	private String name;
+	private String pin;
+	private int balance;
+	private int transactions;
+	
+	BankAccount(String name){
+		this.setPin("0000");
+		this.transactions = 1;
+		this.name = name;
+	}
+	
+	@SuppressWarnings("unused")
+	private String getPin() {
+		return this.pin;
+	}
+	
+	private void setPin(String pin) {
+		this.pin = pin;
+	}
+	
+	public void deposit(int amount) {
+		if(amount > 0) {
+			balance += amount;
+		}
+		this.transactions += 1;
+	}
+	
+	public void withdraw(int amount) {
+		if(amount > 0) {
+			balance -= amount;
+		}
+		this.transactions += 1;
+	}
+	
+	@Override
+	public String toString() {
+		return this.name+" has $"+this.balance+" (transaction no. "+this.transactions+")";
+	}
+	
+	public static void main(String[] args) {
+		BankAccount bc = new BankAccount("Josiah");
+		bc.deposit(50);
+		bc.withdraw(25);
+		
+		System.out.println(bc);
+	}
+}
